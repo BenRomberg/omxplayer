@@ -608,7 +608,7 @@ int main(int argc, char *argv[])
   #define S(x) (int)(DVD_PLAYSPEED_NORMAL*(x))
   int playspeeds[] = {S(0), S(1/16.0), S(1/8.0), S(1/4.0), S(1/2.0), S(0.975), S(1.0), S(1.125), S(-32.0), S(-16.0), S(-8.0), S(-4), S(-2), S(-1), S(1), S(2.0), S(4.0), S(8.0), S(16.0), S(32.0)};
   const int playspeed_slow_min = 0, playspeed_slow_max = 7, playspeed_rew_max = 8, playspeed_rew_min = 13, playspeed_normal = 14, playspeed_ff_min = 15, playspeed_ff_max = 19;
-  int playspeed_current = playspeed_normal;
+  int playspeed_current = 4;
   double m_last_check_time = 0.0;
   int c;
   std::string mode;
@@ -1000,6 +1000,9 @@ int main(int argc, char *argv[])
   m_av_clock->OMXStateExecute();
 
   PrintSubtitleInfo();
+
+  printf("Setting playspeed to %d", playspeeds[playspeed_current]);
+  SetSpeed(playspeeds[playspeed_current]);
 
   while(!m_stop)
   {
